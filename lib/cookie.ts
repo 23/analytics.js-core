@@ -10,7 +10,6 @@ import cloneDeep from 'lodash.clonedeep'
 var bindAll = require('bind-all');
 var cookie = require('@segment/cookie');
 var debug = require('debug')('analytics.js:cookie');
-var topDomain = require('@segment/top-domain');
 
 const MAX_AGE_ONE_YEAR = 31536000000
 
@@ -33,8 +32,7 @@ Cookie.prototype.options = function(options?: CookieOptions) {
 
   options = options || {};
 
-  let domain = '.' + topDomain(window.location.href);
-  if (domain === '.') domain = null;
+  domain = null;
 
   const defaults: CookieOptions  = {
     maxage: MAX_AGE_ONE_YEAR,
