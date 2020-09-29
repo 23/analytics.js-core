@@ -11,7 +11,8 @@ var bindAll = require('bind-all');
 var cookie = require('@segment/cookie');
 var debug = require('debug')('analytics.js:cookie');
 
-const MAX_AGE_ONE_YEAR = 31536000000
+const MAX_AGE_THREE_MONTHS = 7776000000
+
 
 /**
  * Initialize a new `Cookie` with `options`.
@@ -35,7 +36,7 @@ Cookie.prototype.options = function(options?: CookieOptions) {
   domain = null;
 
   const defaults: CookieOptions  = {
-    maxage: MAX_AGE_ONE_YEAR,
+    maxage: (typeof(options.maxage)!='undefined' ? options.maxage : MAX_AGE_THREE_MONTHS),
     domain: domain,
     path: '/',
     sameSite: 'Lax'
